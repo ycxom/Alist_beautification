@@ -1,0 +1,662 @@
+<!--Alist V3建议添加的，已经默认添加了，如果你的没有建议加上-->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=String.prototype.replaceAll"></script>
+
+<!--引入字体，全局字体使用-->
+<link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-webfont@1.1.0/lxgwwenkai-regular.css" />
+
+<!-- Font6，自定义底部使用和看板娘使用的图标和字体文件-->
+<link type='text/css' rel="stylesheet" href="https://npm.elemecdn.com/font6pro@6.0.1/css/fontawesome.min.css"
+    media='all'>
+<link href="https://npm.elemecdn.com/font6pro@6.0.1/css/all.min.css" rel="stylesheet">
+
+<!--音乐播放器所用的文件-->
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.css">
+<script src="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://npm.elemecdn.com/meting@2.0.1/dist/Meting.min.js"></script>
+
+<!--以下为使用模板后我自己修改的，个性化覆盖了很多地方-->
+<!--复制转载的时，麻烦各位佬们能留下我的名字咯-->
+<!--以下为个性化文件-->
+<style>
+    /* 去除通知栏 右上角 X */
+    .notify-render .hope-close-button {
+        display: none;
+    }
+
+    /*白天背景图*/
+    .hope-ui-light {
+        background-image: url("https://t.mwm.moe/moez") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position-x: center;
+    }
+
+    /*夜间背景图*/
+    .hope-ui-dark {
+        background-image: url("https://t.mwm.moe/moez/") !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position-x: center;
+    }
+
+    /*将顶部透明，0%将全部透明*/
+    .header.hope-center.hope-c-jKOUQW.hope-c-PJLV.hope-c-PJLV-ikaMhsQ-css {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    /*目录透明*/
+    .nav.hope-breadcrumb.hope-c-hrsMRY.hope-c-PJLV.hope-c-PJLV-idaeksS-css {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+
+    /*搜索栏目"x"*/
+    .hope-modal__close-button.hope-c-gYVOHl.hope-close-button.hope-c-iNeqtt.hope-c-iNeqtt-feqEsd-size-md.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        /* 轻微圆润角边 */
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*搜索栏目*/
+    .hope-ui-dark .hope-input.hope-c-kvTTWD.hope-c-PJLV.hope-c-kvTTWD-hYRNAb-variant-filled.hope-c-kvTTWD-gfwxhr-size-md.hope-c-PJLV-hbsPHc-cv.hope-c-PJLV.hope-c-PJLV-ibtHApG-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+    /*新建档案*/
+    .hope-modal__content.hope-c-hOYTCS.hope-c-jJyNvw.hope-c-jJyNvw-jcDqLc-size-md.hope-c-jJyNvw-juNrEW-scrollBehavior-outside.hope-c-PJLV.hope-c-PJLV-ibvTkII-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*本機設定*/
+    .hope-drawer__content.hope-c-hOYTCS.hope-c-iPJpIL.hope-c-iPJpIL-bVSmjq-size-xs.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        background: rgba(0, 0, 0, 0.2) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+
+    /*小细节bug-多选虚化侧露漏洞*/
+    .hope-c-PJLV.hope-c-PJLV-ihhTJUS-css.hope-checkbox.hope-c-bWWAUi.hope-c-PJLV.hope-c-bWWAUi-mpEQd-size-md.hope-c-PJLV-ejCoEP-labelPlacement-end.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        backdrop-filter: blur(0px) !important;
+    }
+
+    /*多选*/
+    .hope-checkbox__control.hope-c-mHASU.hope-c-iojPKw.hope-c-mHASU-byiOue-variant-filled.hope-c-mHASU-kFfbLQ-colorScheme-info.hope-c-mHASU-ixAowb-size-md.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        backdrop-filter: blur(5px) !important;
+    }
+
+    /**********************************************************************************/
+    /*登录部分*/
+    /*登录背景图1*/
+    .hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ifjOQLV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        background-image: url("http://hanhan.avocado.wiki/?xiaodouni") !important;
+    }
+
+    /*登录背景图2夜间*/
+    .hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-iubUra-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(0, 0, 0, 0.4) !important;
+        background-image: url("http://hanhan.avocado.wiki/?xiaodouni") !important;
+    }
+
+    /*以游客登陆按钮*/
+    .hope-ui-light .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-fbcPgu-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(237, 233, 254, 0.4) !important;
+    }
+
+    /*夜间*/
+    .hope-ui-dark .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-fbcPgu-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(44, 34, 80, 0.4) !important;
+    }
+
+    /*清除按钮*/
+    .hope-ui-light .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-eHkSxq-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(216, 243, 246, 0.4) !important;
+    }
+
+    /*夜间*/
+    .hope-ui-dark .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-eHkSxq-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(7, 48, 59, 0.4) !important;
+    }
+
+    /*登录按钮*/
+    .hope-ui-light .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-dvmlqS-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(225, 240, 255, 0.4) !important;
+    }
+
+    /*夜间*/
+    .hope-ui-dark .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-dvmlqS-cv.hope-c-PJLV.hope-c-PJLV-ifDMJcV-css {
+        backdrop-filter: blur(10px) !important;
+        background: rgba(16, 42, 76, 0.4) !important;
+    }
+
+    /*切换语言的按钮*/
+    .hope-menu__trigger.hope-c-bvjbhC.hope-c-PJLV.hope-c-PJLV-igHJqhb-css {
+        padding: 1px 5px;
+        border-radius: 10px;
+        /* 轻微圆润角边 */
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*切换夜间&白天与其他的按钮*/
+    .hope-icon.hope-c-XNyZK.hope-c-PJLV.hope-c-PJLV-icHSmvX-css {
+        padding: 1px 5px;
+        border-radius: 10px;
+        /* 轻微圆润角边 */
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*忘记密码*/
+    .hope-text.hope-c-PJLV.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        /* 轻微圆润角边 */
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*记住账号*/
+    .hope-checkbox.hope-c-bWWAUi.hope-c-PJLV.hope-c-bWWAUi-mpEQd-size-md.hope-c-PJLV-ejCoEP-labelPlacement-end.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        /* 轻微圆润角边 */
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+
+
+    /**********************************************************************************/
+    /*夜间模式*/
+    /*主列表透明*/
+    .hope-ui-dark .obj-box.hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-iigjoxS-css {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /*readme透明*/
+    .hope-ui-dark .hope-c-PJLV.hope-c-PJLV-iiuDLME-css {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /*代码块透明*/
+    .hope-ui-dark pre {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /*搜索主体+毛玻璃*/
+    .hope-ui-dark .hope-c-PJLV-iiBaxsN-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*搜索栏+毛玻璃*/
+    .hope-ui-dark .hope-c-kvTTWD-hYRNAb-variant-filled {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* 搜索按钮+毛玻璃*/
+    .hope-ui-dark .hope-c-PJLV-ikEIIxw-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视图按钮*/
+    .hope-ui-dark .hope-menu__trigger.hope-c-bvjbhC.hope-c-PJLV.hope-c-PJLV-ieTGfmR-css.hope-icon-button.hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-cEknLI-size-lg.hope-c-ivMHWx-dvmlqS-cv.hope-c-ivMHWx-hZistB-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*桌面搜索框*/
+    .hope-ui-dark .hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ijMezfq-css {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*右键菜单*/
+    .hope-ui-dark .solid-contextmenu.solid-contextmenu__theme--dark {
+        background: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视图列表*/
+    .hope-ui-dark .hope-menu__content.hope-c-zbPwS.hope-c-PJLV.hope-c-PJLV-iSMXDf-css {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*目录列表栏*/
+    .hope-ui-dark .nav-link.hope-breadcrumb__link.hope-c-kyJmIJ.hope-c-kyJmIJ-kEuwJU-currentPage-false.hope-c-PJLV.hope-c-PJLV-ibMsOCJ-css {
+        background-color: rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /*目录列表栏-当前选中*/
+    .hope-ui-dark .nav-link.hope-breadcrumb__link.hope-c-kyJmIJ.hope-c-kyJmIJ-bQjbGr-currentPage-true.hope-c-PJLV.hope-c-PJLV-ibMsOCJ-css {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*更多菜单*/
+    .hope-ui-dark .left-toolbar.hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ijgzmFG-css {
+        background-color: rgba(0, 0, 0, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*沒有更多了 提示框*/
+    .hope-ui-dark .hope-text.hope-c-PJLV.hope-c-PJLV.hope-c-PJLV-ieESZju-css {
+        padding: 1px 5px;
+        border-radius: 10px;
+        /* 轻微圆润角边 */
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视频播放器*/
+    /*选择播放&下载*/
+    .hope-ui-dark .hope-select__content.hope-c-XJURY.hope-c-PJLV.hope-c-PJLV-ijpihTg-css {
+        background: rgba(0, 0, 0, 0) !important;
+    }
+
+    /*选择播放&下载内侧*/
+    .hope-ui-dark .hope-select__listbox.hope-c-dHzJn.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        background: rgba(0, 0, 0, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视频选择*/
+    .hope-ui-dark .hope-select__trigger.hope-c-kvTTWD.hope-c-huZphZ.hope-c-kvTTWD-hYRNAb-variant-filled.hope-c-kvTTWD-gfwxhr-size-md.hope-c-huZphZ-cIGthf-cv.hope-c-PJLV.hope-c-PJLV-ibtHApG-css {
+        background: rgba(0, 0, 0, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+    /*音乐播放器*/
+    /*选择播放&下载*/
+    .hope-ui-dark .hope-select__trigger.hope-c-kvTTWD.hope-c-huZphZ.hope-c-kvTTWD-hYRNAb-variant-filled.hope-c-kvTTWD-gfwxhr-size-md.hope-c-huZphZ-cIGthf-cv.hope-c-PJLV.hope-c-PJLV-ijSQbqe-css {
+        background: rgba(0, 0, 0, 0) !important;
+    }
+
+    /*有列表的播放器框架*/
+    .hope-ui-dark .hope-c-PJLV.hope-c-PJLV-ikgiLXI-css.aplayer.aplayer-withlrc.aplayer-withlist {
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /*没列表的播放器框架*/
+    .hope-ui-dark .hope-c-PJLV.hope-c-PJLV-ikgiLXI-css.aplayer.aplayer-withlrc {
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /*播放列表*/
+    .hope-ui-dark .aplayer-list {
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /*当前播放列表*/
+    .hope-ui-dark .aplayer-list-dark {
+        background: rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*播放器*/
+    .hope-ui-dark .aplayer-body {
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*复制链接按钮*/
+    .hope-ui-dark .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-fbcPgu-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background-color: rgba(44, 34, 80, 0.5) !important;
+    }
+
+    /*下载按钮*/
+    .hope-ui-dark .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-dvmlqS-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background-color: rgba(16, 42, 76, 0.5) !important;
+    }
+
+    /*文件详细显示时间背景虚化*/
+    .hope-ui-dark .hope-text.hope-c-PJLV.hope-c-PJLV-eCpENx-size-sm.hope-c-PJLV.hope-c-PJLV-ihZtYcd-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        backdrop-filter: blur(10px) !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /*文件详细显示名字背景虚化*/
+    .hope-ui-dark .hope-heading.hope-c-PJLV.hope-c-iqCzBn.hope-c-PJLV-hVcBiK-size-lg.hope-c-PJLV.hope-c-PJLV-ibieBKe-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        backdrop-filter: blur(10px) !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+
+    /*上传*/
+    .hope-ui-dark .hope-modal__content.hope-c-hOYTCS.hope-c-jJyNvw.hope-c-jJyNvw-bVSmjq-size-xs.hope-c-jJyNvw-juNrEW-scrollBehavior-outside.hope-c-jJyNvw-kvuHwT-size-md.hope-c-jJyNvw-fMWTjf-size-lg.hope-c-jJyNvw-FhbsI-size-xl.hope-c-jJyNvw-jNxcuY-size-2xl.hope-c-PJLV.hope-c-PJLV-ibvTkII-css {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*批量重命名*/
+    .hope-ui-dark .hope-modal__content.hope-c-hOYTCS.hope-c-jJyNvw.hope-c-jJyNvw-bVSmjq-size-xs.hope-c-jJyNvw-juNrEW-scrollBehavior-outside.hope-c-jJyNvw-kvuHwT-size-md.hope-c-PJLV.hope-c-PJLV-ibvTkII-css {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+    /*提示框*/
+    .hope-ui-dark .hope-notification.hope-c-cIFneQ.hope-c-PJLV.hope-c-PJLV-idwKBiq-css {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+
+
+
+    /**********************************************************************************/
+    /*白天模式*/
+    /*主列表透明*/
+    .hope-ui-light .obj-box.hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-igScBhH-css {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /*readme模式透明*/
+    .hope-ui-light .hope-c-PJLV.hope-c-PJLV-ikSuVsl-css {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /*代码块透明*/
+    .hope-ui-light pre {
+        background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    /*搜索主体+毛玻璃*/
+    .hope-ui-light .hope-c-PJLV-iiBaxsN-css {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*搜索栏+毛玻璃*/
+    .hope-ui-light .hope-c-kvTTWD-hYRNAb-variant-filled {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* 搜索按钮+毛玻璃*/
+    .hope-ui-light .hope-c-PJLV-ikEIIxw-css {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视图按钮*/
+    .hope-ui-light .hope-menu__trigger.hope-c-bvjbhC.hope-c-PJLV.hope-c-PJLV-ieTGfmR-css.hope-icon-button.hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-cEknLI-size-lg.hope-c-ivMHWx-dvmlqS-cv.hope-c-ivMHWx-hZistB-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*桌面搜索框*/
+    .hope-ui-light .hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ijMezfq-css {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*右键菜单*/
+    .hope-ui-light .solid-contextmenu.solid-contextmenu__theme--dark {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视图列表*/
+    .hope-ui-light .hope-menu__content.hope-c-zbPwS.hope-c-PJLV.hope-c-PJLV-iSMXDf-css {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*目录列表栏*/
+    .hope-ui-light .nav-link.hope-breadcrumb__link.hope-c-kyJmIJ.hope-c-kyJmIJ-kEuwJU-currentPage-false.hope-c-PJLV.hope-c-PJLV-ibMsOCJ-css {
+        background-color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    /*目录列表栏-当前选中*/
+    .hope-ui-light .nav-link.hope-breadcrumb__link.hope-c-kyJmIJ.hope-c-kyJmIJ-bQjbGr-currentPage-true.hope-c-PJLV.hope-c-PJLV-ibMsOCJ-css {
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*更多菜单*/
+    .hope-ui-light .left-toolbar.hope-stack.hope-c-dhzjXW.hope-c-PJLV.hope-c-PJLV-ijgzmFG-css {
+        background-color: rgba(255, 255, 255, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*沒有更多了 提示框*/
+    .hope-ui-light .hope-text.hope-c-PJLV.hope-c-PJLV.hope-c-PJLV-ieESZju-css {
+        padding: 1px 5px;
+        border-radius: 10px;
+        /* 轻微圆润角边 */
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视频播放器*/
+    /*选择播放&下载*/
+    .hope-ui-light .hope-select__content.hope-c-XJURY.hope-c-PJLV.hope-c-PJLV-ijpihTg-css {
+        background: rgba(255, 255, 255, 0) !important;
+    }
+
+    /*选择播放&下载内侧*/
+    .hope-ui-light .hope-select__listbox.hope-c-dHzJn.hope-c-PJLV.hope-c-PJLV-ijhzIfm-css {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*视频选择*/
+    .hope-ui-light .hope-select__trigger.hope-c-kvTTWD.hope-c-huZphZ.hope-c-kvTTWD-hYRNAb-variant-filled.hope-c-kvTTWD-gfwxhr-size-md.hope-c-huZphZ-cIGthf-cv.hope-c-PJLV.hope-c-PJLV-ibtHApG-css {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+    /*音乐播放器*/
+    /*选择播放&下载*/
+    .hope-ui-light .hope-select__trigger.hope-c-kvTTWD.hope-c-huZphZ.hope-c-kvTTWD-hYRNAb-variant-filled.hope-c-kvTTWD-gfwxhr-size-md.hope-c-huZphZ-cIGthf-cv.hope-c-PJLV.hope-c-PJLV-ijSQbqe-css {
+        background: rgba(255, 255, 255, 0) !important;
+    }
+
+    /*有列表的播放器框架*/
+    .hope-ui-light .hope-c-PJLV.hope-c-PJLV-ikgiLXI-css.aplayer.aplayer-withlrc.aplayer-withlist {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /*没列表的播放器框架*/
+    .hope-ui-light .hope-c-PJLV.hope-c-PJLV-ikgiLXI-css.aplayer.aplayer-withlrc {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /*播放列表*/
+    .hope-ui-light .aplayer-list {
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /*当前播放列表*/
+    .hope-ui-light .aplayer-list-light {
+        background: rgba(255, 255, 255, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*播放器*/
+    .hope-ui-light .aplayer-body {
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*复制链接按钮*/
+    .hope-ui-light .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-fbcPgu-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background-color: rgba(237, 233, 254, 0.5) !important;
+    }
+
+    /*下载按钮*/
+    .hope-ui-light .hope-button.hope-c-ivMHWx.hope-c-ivMHWx-kcPQpq-variant-subtle.hope-c-ivMHWx-kWSPeQ-size-md.hope-c-ivMHWx-dvmlqS-cv.hope-c-PJLV.hope-c-PJLV-iikaotv-css {
+        background-color: rgba(225, 240, 255, 0.5) !important;
+    }
+
+    /*文件详细显示时间背景虚化*/
+    .hope-ui-light .hope-text.hope-c-PJLV.hope-c-PJLV-eCpENx-size-sm.hope-c-PJLV.hope-c-PJLV-ihZtYcd-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        backdrop-filter: blur(10px) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /*文件详细显示名字背景虚化*/
+    .hope-ui-light .hope-heading.hope-c-PJLV.hope-c-iqCzBn.hope-c-PJLV-hVcBiK-size-lg.hope-c-PJLV.hope-c-PJLV-ibieBKe-css {
+        padding: 1px 5px;
+        border-radius: 7px;
+        backdrop-filter: blur(10px) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    /*上传*/
+    .hope-ui-light .hope-modal__content.hope-c-hOYTCS.hope-c-jJyNvw.hope-c-jJyNvw-bVSmjq-size-xs.hope-c-jJyNvw-juNrEW-scrollBehavior-outside.hope-c-jJyNvw-kvuHwT-size-md.hope-c-jJyNvw-fMWTjf-size-lg.hope-c-jJyNvw-FhbsI-size-xl.hope-c-jJyNvw-jNxcuY-size-2xl.hope-c-PJLV.hope-c-PJLV-ibvTkII-css {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*批量重命名*/
+    .hope-ui-light .hope-modal__content.hope-c-hOYTCS.hope-c-jJyNvw.hope-c-jJyNvw-bVSmjq-size-xs.hope-c-jJyNvw-juNrEW-scrollBehavior-outside.hope-c-jJyNvw-kvuHwT-size-md.hope-c-PJLV.hope-c-PJLV-ibvTkII-css {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /*提示框*/
+    .hope-ui-light .hope-notification.hope-c-cIFneQ.hope-c-PJLV.hope-c-PJLV-idwKBiq-css {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+
+
+    /**********************************************************************************/
+    /*底部CSS，.APP .tanle这三个一起的*/
+    dibu {
+        border-top: 0px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .App {
+        min-height: 85vh;
+    }
+
+    .table {
+        margin: auto;
+    }
+
+    /*去掉底部*/
+    .footer {
+        display: none !important;
+    }
+
+    /*全局字体*/
+    * {
+        font-family: LXGW WenKai
+    }
+
+    * {
+        font-weight: bold
+    }
+
+    body {
+        font-family: LXGW WenKai;
+    }
+
+    /*渐变背景CSS*/
+    #canvas-basic {
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -999;
+    }
+</style>
+
+<!--较为个性化的鼠标指针样式，可结合个人需要自行修改-->
+<!--灵感来自：https://anwen-anyi.github.io/index/05-head.html#%E8%87%AA%E8%A1%8C%E6%9B%BF%E6%8D%A2%E9%BC%A0%E6%A0%87%E6%A0%B7%E5%BC%8F%E8%AF%B4%E6%98%8E-->
+<style>
+    /*pointer*/
+    body {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/pointer.cur?sign=hBsgL9bhf_Rawk67wKH8qLaGZfh6LVzwIh1TyImvpD4=:5322136165), default;
+    }
+
+    /*Hand*/
+    select {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/unavailable.cur?sign=eL_AXdqCcr-bk2FPPu-7onTPI2lgoKsi1EV87kYQcJs=:5322138656), pointer;
+    }
+
+    /*Hand2*/
+    button,
+    a:hover {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/link.cur?sign=8SF2I3s-AUtJoyOGY2R9YUeAt_nTV6OZE6JD5JuimRU=:5322136165), pointer;
+    }
+
+    /*help*/
+    input {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/help.cur?sign=IkdBDn12BYFIu3Yjjsvk9KCQkLDj9ohEYrRVBy-oSYM=:5322138656), text;
+    }
+
+    /*handwriting*/
+    textarea,
+    input:focus {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/handwriting.cur?sign=4dVKq2VgfI5SDzGim4LOdKnakvj6JodDKA6eW2TnDu0=:5322138656), text;
+    }
+
+    /*修改文字*/
+    code {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/text.cur?sign=GX7uUBrPVrSjcx0N8u_lmfexfILcGTlwkah_YF-RrUk=:5322136165), default;
+    }
+
+    /*copy*/
+    pre>code {
+        cursor: url(https://ai.ycxom.top:8888/d/G%E7%9B%98/%E9%BC%A0%E6%A0%87%E6%8C%87%E9%92%88/%E6%9C%AA%E5%88%86%E7%B1%BB/Material%20Design%20Cursors/Light/%E5%B8%B8%E8%A7%84/text.cur?sign=GX7uUBrPVrSjcx0N8u_lmfexfILcGTlwkah_YF-RrUk=:5322136165), auto;
+    }
+</style>
+
+<!--ycxom 2024/7/28编-->
+<!--看板娘 -自定义大小，隐藏对话框和对话框高度-->
+<style type="text/css">
+    #waifu #live2d {
+        height: 280px !important;
+        width: 280px !important;
+    }
+
+    #waifu-tips {
+        top: -80px;
+        /*display:none !important;隐藏对话框*/
+    }
+</style>
+
+<!--看板娘加载指定模型-->
+<script>
+    localStorage.setItem('modelId', '6');
+    localStorage.setItem('modelTexturesId', '16');
+</script>
+
+<!--以下四个两个主用两个备用的,选一条使用即可-->
+<!--自己选左右-->
+<script src="https://ai.ycxom.top:8766/live2d-widget/autoload.js"></script>
